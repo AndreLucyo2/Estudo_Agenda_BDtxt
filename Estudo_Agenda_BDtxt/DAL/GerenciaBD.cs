@@ -8,13 +8,12 @@ using Estudo_Agenda_BDtxt.DTO;
 
 namespace Estudo_Agenda_BDtxt.DAL
 {
-    public static class GeranciaBD
+    public static class GerenciaBD
     {
         //Vontrole de versao:
         public static string V_Versao = "v 1.0.0";
 
-        //lista de contatos:
-        private static List<Contato> _ListaContatos;
+        public static List<Contato> XListaContatos;
 
         /// <summary>
         /// Definir o arquivo de banco de dados
@@ -33,6 +32,9 @@ namespace Estudo_Agenda_BDtxt.DAL
             //Definir o local do BD:
             string NomeArquivoBD = MET_AqruivoContatosBD();
 
+            //criar lista vazia de contatos independente de ter o arquivoc de dados
+            XListaContatos = new List<Contato>();
+
             //Verificar se o BD existe:
             if (File.Exists(NomeArquivoBD))
             {
@@ -40,7 +42,7 @@ namespace Estudo_Agenda_BDtxt.DAL
                 StreamReader ArquivoBD = new StreamReader(NomeArquivoBD, Encoding.Default); // 
 
                 //criar lista de contatos:
-                _ListaContatos = new List<Contato>();
+                XListaContatos = new List<Contato>();
 
                 //loop a cada volta carrega duas linhas:
                 //faca ate o final do arquivo texto
@@ -56,7 +58,7 @@ namespace Estudo_Agenda_BDtxt.DAL
                     Contato contato = new Contato();
                     contato.nome = Nome;
                     contato.numero = Numero;
-                    _ListaContatos.Add(contato);
+                    XListaContatos.Add(contato);
                 }
 
                 //Liberar o Arquivo
@@ -71,7 +73,7 @@ namespace Estudo_Agenda_BDtxt.DAL
         {
             //FORMA 1:
             //gravar a lista em apenas uma linha
-            _ListaContatos.Add(new Contato() { nome = nome, numero = numero });
+            XListaContatos.Add(new Contato() { nome = nome, numero = numero });
 
             //FORMA 2:
             //gravar a lista instanciando:
@@ -95,7 +97,7 @@ namespace Estudo_Agenda_BDtxt.DAL
             StreamWriter V_ArquivoTxt = new StreamWriter(NomeArquivoBD, false, Encoding.Default);
             
             //Carregar a ista no aqruivo:
-            foreach (Contato V_Contato in _ListaContatos)
+            foreach (Contato V_Contato in XListaContatos)
             {
                 V_ArquivoTxt.WriteLine(V_Contato.nome); //gravar uma linha com o Nome
                 V_ArquivoTxt.WriteLine(V_Contato.numero); //grava outra linha com o Numero ogo abaixo do nome

@@ -143,6 +143,7 @@
             this.BtnGravar.TabIndex = 13;
             this.BtnGravar.Text = "Gravar";
             this.BtnGravar.UseVisualStyleBackColor = false;
+            this.BtnGravar.Click += new System.EventHandler(this.BtnGravar_Click);
             // 
             // TexCel
             // 
