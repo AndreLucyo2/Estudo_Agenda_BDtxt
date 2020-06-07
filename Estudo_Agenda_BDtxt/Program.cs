@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Estudo_Agenda_BDtxt.VIEW;
+
 
 namespace Estudo_Agenda_BDtxt
 {
@@ -16,7 +15,7 @@ namespace Estudo_Agenda_BDtxt
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FRM_Menu());
         }
     }
 }

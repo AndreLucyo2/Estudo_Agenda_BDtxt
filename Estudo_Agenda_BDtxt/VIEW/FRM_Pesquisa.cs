@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Estudo_Agenda_BDtxt
+namespace Estudo_Agenda_BDtxt.VIEW
 {
-    public partial class Form1 : Form
+    public partial class FRM_Pesquisa : Form
     {
-        public Form1()
+        public FRM_Pesquisa()
         {
             InitializeComponent();
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

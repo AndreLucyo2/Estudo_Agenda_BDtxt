@@ -16,5 +16,18 @@ namespace Estudo_Agenda_BDtxt.VIEW
         {
             InitializeComponent();
         }
+
+        private void CMD_Inserir_Editar_Click(object sender, EventArgs e)
+        {
+            FRM_Cadastro cadastro = new FRM_Cadastro();
+            cadastro.ShowDialog();
+
+        }
+
+        private void CMD_Pesquisar_Click(object sender, EventArgs e)
+        {
+            FRM_Pesquisa pesquisa = new FRM_Pesquisa();
+            pesquisa.ShowDialog();
+        }
     }
 }
