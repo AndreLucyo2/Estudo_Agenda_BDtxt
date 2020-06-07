@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Estudo_Agenda_BDtxt.CONTROLLER;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace Estudo_Agenda_BDtxt.VIEW
 {
     public partial class FRM_Menu : Form
     {
+        //Controller da View:
+        private MenuController controller;
+
         public FRM_Menu()
         {
             InitializeComponent();
+
+            controller = new MenuController(this);
+            controller.LerArquivo();
+
         }
 
         private void CMD_Inserir_Editar_Click(object sender, EventArgs e)

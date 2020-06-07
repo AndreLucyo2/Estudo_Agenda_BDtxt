@@ -46,8 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BLL_Contato.cs" />
+    <Compile Include="CONTROLLER\CadastroController.cs" />
+    <Compile Include="CONTROLLER\MenuController.cs" />
+    <Compile Include="DAL\DAL_Contato.cs" />
     <Compile Include="DAL\GerenciaBD.cs" />
-    <Compile Include="DTO\Contato.cs" />
+    <Compile Include="DTO\DTO_Contato.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VIEW\FRM_Cadastro.cs">
@@ -108,8 +112,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

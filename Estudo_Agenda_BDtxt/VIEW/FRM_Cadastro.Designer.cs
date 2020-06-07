@@ -33,7 +33,7 @@
             this.BtnApagar = new System.Windows.Forms.Button();
             this.LBL_NumRegistros = new System.Windows.Forms.Label();
             this.LblLista = new System.Windows.Forms.Label();
-            this.LSTB_Lista_Contatos = new System.Windows.Forms.ListBox();
+            this.ListBListaContatos = new System.Windows.Forms.ListBox();
             this.BtnGravar = new System.Windows.Forms.Button();
             this.TexCel = new System.Windows.Forms.TextBox();
             this.LblCel = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
             this.PnlGeral.Controls.Add(this.BtnApagar);
             this.PnlGeral.Controls.Add(this.LBL_NumRegistros);
             this.PnlGeral.Controls.Add(this.LblLista);
-            this.PnlGeral.Controls.Add(this.LSTB_Lista_Contatos);
+            this.PnlGeral.Controls.Add(this.ListBListaContatos);
             this.PnlGeral.Controls.Add(this.BtnGravar);
             this.PnlGeral.Controls.Add(this.TexCel);
             this.PnlGeral.Controls.Add(this.LblCel);
@@ -80,6 +80,7 @@
             this.BtnEditar.TabIndex = 16;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.UseVisualStyleBackColor = false;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // BtnApagar
             // 
@@ -97,6 +98,7 @@
             this.BtnApagar.TabIndex = 15;
             this.BtnApagar.Text = "Apagar";
             this.BtnApagar.UseVisualStyleBackColor = false;
+            this.BtnApagar.Click += new System.EventHandler(this.BtnApagar_Click);
             // 
             // LBL_NumRegistros
             // 
@@ -119,13 +121,14 @@
             this.LblLista.Text = "Lista de contatos registrados:";
             this.LblLista.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // LSTB_Lista_Contatos
+            // ListBListaContatos
             // 
-            this.LSTB_Lista_Contatos.FormattingEnabled = true;
-            this.LSTB_Lista_Contatos.Location = new System.Drawing.Point(118, 140);
-            this.LSTB_Lista_Contatos.Name = "LSTB_Lista_Contatos";
-            this.LSTB_Lista_Contatos.Size = new System.Drawing.Size(417, 251);
-            this.LSTB_Lista_Contatos.TabIndex = 17;
+            this.ListBListaContatos.FormattingEnabled = true;
+            this.ListBListaContatos.Location = new System.Drawing.Point(118, 140);
+            this.ListBListaContatos.Name = "ListBListaContatos";
+            this.ListBListaContatos.Size = new System.Drawing.Size(417, 251);
+            this.ListBListaContatos.TabIndex = 17;
+            this.ListBListaContatos.SelectedIndexChanged += new System.EventHandler(this.ListBListaContatos_SelectedIndexChanged);
             // 
             // BtnGravar
             // 
@@ -201,6 +204,7 @@
             this.BtnFechar.TabIndex = 14;
             this.BtnFechar.Text = "Fechar";
             this.BtnFechar.UseVisualStyleBackColor = false;
+            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
             // 
             // FRM_Cadastro
             // 
@@ -224,7 +228,7 @@
         private System.Windows.Forms.Button BtnApagar;
         private System.Windows.Forms.Label LBL_NumRegistros;
         private System.Windows.Forms.Label LblLista;
-        private System.Windows.Forms.ListBox LSTB_Lista_Contatos;
+        private System.Windows.Forms.ListBox ListBListaContatos;
         private System.Windows.Forms.Button BtnGravar;
         private System.Windows.Forms.TextBox TexCel;
         private System.Windows.Forms.Label LblCel;

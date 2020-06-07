@@ -11,9 +11,14 @@ namespace Estudo_Agenda_BDtxt.DAL
     public static class GerenciaBD
     {
         //Vontrole de versao:
-        public static string V_Versao = "v 1.0.0";
+        private const string _VERSAO = "v 1.0.0";        
+        public static string Versao = _VERSAO;
 
-        public static List<Contato> XListaContatos;
+        //lista de contatos:
+        public static List<DTO_Contato> LST_ListaContatos;
+
+        //Definir o caminho do arquivo de BD
+        public static string NomeArquivoBD = MET_AqruivoContatosBD();
 
         /// <summary>
         /// Definir o arquivo de banco de dados
@@ -23,57 +28,23 @@ namespace Estudo_Agenda_BDtxt.DAL
         {
             //determinar a pasta onde criar o arquivo de dados *.txt
             string pastaAplicacao = System.AppDomain.CurrentDomain.BaseDirectory.ToString();
-            string NomeArquivoBD = pastaAplicacao + @"\ContatosBD.txt";
+            string NomeArquivoBD = pastaAplicacao + "ContatosBD.txt";
             return NomeArquivoBD;
         }
 
-        public static void MET_CarregarListaContos()
-        {          
-            //Definir o local do BD:
-            string NomeArquivoBD = MET_AqruivoContatosBD();
-
-            //criar lista vazia de contatos independente de ter o arquivoc de dados
-            XListaContatos = new List<Contato>();
-
-            //Verificar se o BD existe:
-            if (File.Exists(NomeArquivoBD))
-            {
-                //ler arquivos BD *.txt
-                StreamReader ArquivoBD = new StreamReader(NomeArquivoBD, Encoding.Default); // 
-
-                //criar lista de contatos:
-                XListaContatos = new List<Contato>();
-
-                //loop a cada volta carrega duas linhas:
-                //faca ate o final do arquivo texto
-                while (!ArquivoBD.EndOfStream) 
-                {
-                    //carregar campo Nome
-                    string Nome = ArquivoBD.ReadLine();
-
-                    //carregar campo Numero
-                    string Numero = ArquivoBD.ReadLine();//escreve a linha imediatemente a seguir
-
-                    //adicionar a list a de contatos o contado carregado:
-                    Contato contato = new Contato();
-                    contato.nome = Nome;
-                    contato.numero = Numero;
-                    XListaContatos.Add(contato);
-                }
-
-                //Liberar o Arquivo
-                ArquivoBD.Dispose();
-            }
-        }
-
         /// <summary>
-        /// Gravar um novo registro no arquivo
+        /// Atualiza a List
         /// </summary>
-        public static void MET_GravarNovoRegistro(string nome, string numero)
-        {
+        public static void AddNovoNaList(string nome, string numero)
+        {           
+            DTO_Contato novoContato = new DTO_Contato();
+            novoContato.nome = nome;
+            novoContato.nome = numero;
+
             //FORMA 1:
-            //gravar a lista em apenas uma linha
-            XListaContatos.Add(new Contato() { nome = nome, numero = numero });
+            //Add. na lista novo contato:
+            //LST_ListaContatos.Add(novoContato);
+            LST_ListaContatos.Add(new DTO_Contato() { nome = nome, numero = numero });
 
             //FORMA 2:
             //gravar a lista instanciando:
@@ -81,30 +52,57 @@ namespace Estudo_Agenda_BDtxt.DAL
             //Novo.Nome = PAR_Nome;
             //Novo.Numero = PAR_Numero;
             //LISTA_CONTATOS.Add(Novo);
-
-            //atualiza o arquivo:
-            MET_GravarArquivoTxt();
         }
 
         /// <summary>
-        /// Gravar Arquivo de Dados
-        /// Substitui o arquivo existente com os dados carregados na lista da tela
+        /// Ler o arquivo e passa para a um lista em momoria
         /// </summary>
-        public static void MET_GravarArquivoTxt() //
+        public static List<DTO_Contato> CarregarArquivoBDContatos()
         {
-            //Definir o arquivo de dados:
-            string NomeArquivoBD = MET_AqruivoContatosBD();
-            StreamWriter V_ArquivoTxt = new StreamWriter(NomeArquivoBD, false, Encoding.Default);
-            
-            //Carregar a ista no aqruivo:
-            foreach (Contato V_Contato in XListaContatos)
+            try
             {
-                V_ArquivoTxt.WriteLine(V_Contato.nome); //gravar uma linha com o Nome
-                V_ArquivoTxt.WriteLine(V_Contato.numero); //grava outra linha com o Numero ogo abaixo do nome
+                //Definir arquivo do banco:
+                string NomeArquivoBD = GerenciaBD.NomeArquivoBD;
+
+                //Verificar se o BD existe se o arquivo existe cria a lista caso contraior nao faz nada
+                if (File.Exists(NomeArquivoBD))
+                {
+                    //ler arquivos BD *.txt
+                    StreamReader ArquivoBD = new StreamReader(NomeArquivoBD, Encoding.Default);
+
+                    //criar lista vazia de contatos independente de ter o arquivoc de dados
+                    LST_ListaContatos = new List<DTO_Contato>();
+
+                    //loop a cada volta carrega duas linhas:
+                    //faca ate o final do arquivo texto
+                    while (!ArquivoBD.EndOfStream)
+                    {
+                        //carregar campo Nome
+                        string Nome = ArquivoBD.ReadLine();
+
+                        //carregar campo Numero
+                        string Numero = ArquivoBD.ReadLine();//escreve a linha imediatemente a seguir
+
+                        //adicionar a list a de contatos o contado carregado:
+                        DTO_Contato contato = new DTO_Contato();
+                        contato.nome = Nome;
+                        contato.numero = Numero;
+                        LST_ListaContatos.Add(contato);
+                    }
+
+                    //Liberar o Arquivo
+                    ArquivoBD.Dispose();
+
+                    return LST_ListaContatos;
+                }
+            }
+            catch (Exception ex)
+            {
+                return LST_ListaContatos = null;
+                throw new Exception("Erro ao Ler o Arquivo de Dados! \n" + ex.Message);
             }
 
-            //libera oa rquivo:
-            V_ArquivoTxt.Dispose();
+            return null;
         }
 
     }
