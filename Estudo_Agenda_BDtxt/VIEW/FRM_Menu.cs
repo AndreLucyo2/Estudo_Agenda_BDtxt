@@ -29,5 +29,14 @@ namespace Estudo_Agenda_BDtxt.VIEW
             FRM_Pesquisa pesquisa = new FRM_Pesquisa();
             pesquisa.ShowDialog();
         }
+
+        private void CMD_Sair_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja sair da aplicação?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+
+            Application.Exit();
+        }
+
+
     }
 }

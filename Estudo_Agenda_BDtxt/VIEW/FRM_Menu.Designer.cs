@@ -89,6 +89,7 @@
             this.CMD_Sair.TabIndex = 7;
             this.CMD_Sair.Text = "Sair";
             this.CMD_Sair.UseVisualStyleBackColor = false;
+            this.CMD_Sair.Click += new System.EventHandler(this.CMD_Sair_Click);
             // 
             // CMD_Pesquisar
             // 
