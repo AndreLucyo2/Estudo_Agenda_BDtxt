@@ -1,4 +1,4 @@
 # Estudo C# , .Net, MVC,VisualStudio2019
 
 ## Descrição:
-Crir uma solução para gravar contatos, usando um txt como banco de dados.
+Criar uma solução para gravar contatos, usando um arquivo *.txt como banco de dados.
